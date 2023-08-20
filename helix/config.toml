@@ -50,7 +50,7 @@ skip-levels = 1
 
 [keys.normal.space]
 w = ":w" #save buffer
-q = ":q!" # save and quit
+q = ":wq!" # save and quit
 n = ":bnext" # next buffer
 p = ":bprev" # previous buffer
 
@@ -62,7 +62,7 @@ h = ":hs" # horizontal split
 v = ":vs" # vertical split
 
 [keys.normal."+"]
-r = ":sh cargo build" # build rust app 
+b = ":sh cargo build" # build rust app 
 
 [keys.normal]
 g = { a = "code_action" } # Maps `ga` to show possible code actions
