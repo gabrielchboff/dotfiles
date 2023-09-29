@@ -1,4 +1,4 @@
-sudo pacman -Sy firefox docker docker-compose konsole helix flatpak ufw \
+sudo pacman -Sy firefox docker docker-compose konsole helix flatpak neovim ufw \
 	libreoffice-fresh vlc neofetch reflector gimp krita kdenlive tmux dolphin kdewallet kdeconnect
 
 sudo reflector --verbose --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
@@ -6,7 +6,6 @@ sudo reflector --verbose --latest 10 --protocol https --sort rate --save /etc/pa
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 yay -Sy zoom discord spotify dbeaver steam preload timeshift teams-for-linux brave-bin
 
-flatpak install flathub md.obsidian.Obsidian
 flatpak install flathub com.visualstudio.code
 flatpak install flathub com.obsproject.Studio
 
