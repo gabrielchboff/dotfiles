@@ -40,6 +40,14 @@ P.S. You can delete this when you're done too. It's your config now :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+-- Set the indentation options
+vim.opt.tabstop = 4         -- Number of spaces that a <Tab> in the file counts for
+vim.opt.shiftwidth = 4      -- Number of spaces to use for each step of (auto)indent
+vim.opt.softtabstop = 4     -- Number of spaces that a <Tab> key in the file inserts or removes
+
+-- Use spaces for indentation
+vim.opt.expandtab = true    -- Use spaces instead of tabs for indentation
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- Install package manager
