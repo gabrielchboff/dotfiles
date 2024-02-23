@@ -1,6 +1,6 @@
 sudo pacman -Sy docker docker-compose ufw\
     libreoffice-fresh vlc neofetch reflector \
-    gimp krita kdenlive tmux
+    gimp krita kdenlive tmux stow
 
 
 sudo reflector --verbose --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
