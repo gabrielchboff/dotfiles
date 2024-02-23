@@ -18,7 +18,7 @@ yay -Syu
 yay -S bspwm sxhkd rofi kitty picom-ibhagwan-git calcurse todotxt \
     feh jq dunst betterlockscreen brightnessctl playerctl maim \
     xclip imagemagick nerd-fonts-noto-sans-mono-extended thunar \
-    ranger
+    ranger sddm
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
