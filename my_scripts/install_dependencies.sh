@@ -12,6 +12,7 @@ sudo pacman -Sy enchant mythes-en ttf-liberation \
 git clone https://aur.archlinux.org/yay-git.git
 cd yay
 makepkg -si
+cd ..
 yay -Syu
 
 yay -S bspwm sxhkd rofi kitty picom-ibhagwan-git calcurse todotxt \
@@ -28,6 +29,7 @@ autoreconf -fi
 make
 sudo make install
 
+cd ..
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
@@ -37,3 +39,4 @@ mkdir -p ~/Documents/git-lab && git clone --depth=1 https://github.com/zoddDev/d
 chmod +x ./setup.sh
 ./setup.sh all pink-nord-alternative
 
+cd $HOME/dotfiles/my_scripts
