@@ -1,0 +1,138 @@
+/* Tokyo Night Storm Theme for Waybar */
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar {
+    background: rgba(24, 25, 38, 0.98);
+    color: #c0caf5;
+    border-radius: 8px;
+}
+
+#workspaces {
+    background: #1a1b26;
+    margin: 5px;
+    padding: 0 5px;
+    border-radius: 8px;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: #c0caf5;
+    border-radius: 3px;
+}
+
+#workspaces button.active {
+    background: #7aa2f7;
+    color: #1a1b26;
+}
+
+#workspaces button:hover {
+    background: rgba(122, 162, 247, 0.2);
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#custom-separator {
+    padding: 0 10px;
+    color: #c0caf5;
+    margin: 5px 0;
+}
+
+#clock {
+    background-color: #1a1b26;
+    color: #7dcfff;
+    border-radius: 8px;
+    margin: 5px;
+    padding: 0 10px;
+}
+
+#battery {
+    color: #9ece6a;
+}
+
+#battery.charging, #battery.plugged {
+    color: #9ece6a;
+}
+
+#battery.critical:not(.charging) {
+    color: #f7768e;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #f7768e;
+        color: #1a1b26;
+    }
+}
+
+#cpu {
+    color: #7aa2f7;
+}
+
+#memory {
+    color: #bb9af7;
+}
+
+#disk {
+    color: #e0af68;
+}
+
+#network {
+    color: #7dcfff;
+}
+
+#network.disconnected {
+    color: #f7768e;
+}
+
+#pulseaudio {
+    color: #9ece6a;
+}
+
+#pulseaudio.muted {
+    color: #f7768e;
+}
+
+#tray {
+    background-color: #1a1b26;
+    border-radius: 8px;
+    margin: 5px;
+    padding: 0 10px;
+}
+
+#custom-separator {
+    color: #565f89;
+    margin: 0 2px;
+    padding: 0;
+}
+
+tooltip {
+    background: #1a1b26;
+    border: 1px solid #7aa2f7;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: #c0caf5;
+}

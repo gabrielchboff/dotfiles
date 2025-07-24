@@ -1,0 +1,81 @@
+[CompactMode]
+FontWeight=50
+PreviewSize=16
+
+[Desktop Entry]
+DefaultProfile=Tokyo Night Storm.profile
+
+[General]
+BrowseThroughArchives=true
+GlobalViewProps=false
+ShowFullPath=true
+ShowToolTips=true
+SortingOrder=1
+SortRole=type
+Version=202
+ViewPropsTimestamp=2023,11,1,12,0,0
+ShowSelectionToggle=false
+ShowStatusBar=true
+ShowZoomSlider=false
+UseTabForSwitchingSplitView=true
+
+[IconsMode]
+IconSize=64
+PreviewSize=64
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=false
+Decoration position=2
+LocationCombo Completions=5
+PathCombo Completions=5
+Show Bookmarks=false
+Show Full Path=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort reversed=false
+Speedbar Width=138
+View Style=Simple
+listViewIconSize=0
+
+[KPropertiesDialog]
+Height 1080=529
+Width 1920=410
+
+[MainWindow]
+MenuBar=Disabled
+ToolBarsMovable=Disabled
+
+[PlacesPanel]
+IconSize=16
+
+[PreviewSettings]
+Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail,textthumbnail
+
+[Search]
+Location=Everywhere
+
+[VersionControl]
+enabledPlugins=Git
+
+[ViewPropertiesDialog]
+Height 1080=341
+Width 1920=358
+
+[Colors]
+BackgroundAlternate=#24283b
+BackgroundNormal=#1a1b26
+DecorationFocus=#7aa2f7
+DecorationHover=#bb9af7
+ForegroundActive=#7dcfff
+ForegroundInactive=#565f89
+ForegroundLink=#7aa2f7
+ForegroundNegative=#f7768e
+ForegroundNeutral=#e0af68
+ForegroundNormal=#c0caf5
+ForegroundPositive=#9ece6a
+ForegroundVisited=#bb9af7
