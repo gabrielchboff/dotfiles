@@ -1,6 +1,7 @@
 #!/bin/sh
-option=$(echo -e "Logout\nReboot\nShutdown" | rofi -dmenu -p "Power")
+option=$(echo -e "Lock\nLogout\nReboot\nShutdown" | rofi -dmenu -p "Power")
 case $option in
+"Lock") ~/.config/xmonad/lock.sh ;;
 "Logout") logout ;;
 "Reboot") systemctl reboot ;;
 "Shutdown") systemctl poweroff ;;

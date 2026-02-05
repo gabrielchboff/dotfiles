@@ -83,8 +83,9 @@ myKeys =
   , ("<Print>", spawn "maim -s | xclip -selection clipboard -t image/png")
   , ("M-e", spawn "thunar")
   , ("M-S-b", spawn "brave")
-  , ("C-M1-<Delete>", spawn "/home/void/.config/xmonad/manager.sh")
-  , ("C-M1-p", spawn "/home/void/.config/xmonad/power.sh")
+  , ("C-M1-<Delete>", spawn "~/.config/xmonad/manager.sh")
+  , ("C-M1-p", spawn "~/.config/xmonad/power.sh")
+  , ("C-M1-l", spawn "~/.config/xmonad/lock.sh")
   , -- Window management
     ("M-q", kill)
   , ("M-j", windows W.focusDown)

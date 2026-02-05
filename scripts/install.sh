@@ -119,12 +119,13 @@ paru -S --needed --noconfirm \
     brave-bin \
     discord \
     heroic-games-launcher-bin \
-    trayer nm-applet \
+    trayer nm-applet betterlockscreen\
 
+
+betterlockscreen -u ~/wallpapers --blur 0.8
 
 echo ""
 echo "AUR packages installed successfully!"
-
 
 echo "=========================================="
 echo " Starting post-installation configuration..."
