@@ -81,9 +81,10 @@ myKeys =
   [ ("M-<Return>", spawn myTerminal)
   , ("M-d", spawn "rofi -show drun -theme ~/.config/rofi/config.rasi")
   , ("<Print>", spawn "maim -s | xclip -selection clipboard -t image/png")
-  , ("M-e", spawn "dolphin")
-  , ("M-b", spawn "brave")
+  , ("M-e", spawn "thunar")
+  , ("M-S-b", spawn "brave")
   , ("C-M1-<Delete>", spawn "/home/void/.config/xmonad/manager.sh")
+  , ("C-M1-p", spawn "/home/void/.config/xmonad/power.sh")
   , -- Window management
     ("M-q", kill)
   , ("M-j", windows W.focusDown)
@@ -109,7 +110,7 @@ myKeys =
   , -- Quit/Restart
     ("M-S-r", spawn "xmonad --recompile && xmonad --restart")
   , --Clipboard
-   ("M-v", spawn "clipmenu")
+    ("M-v", spawn "clipmenu")
   ,-- Keychords for tag navigation (Mod+Space then number)
     ("M-1", windows $ W.greedyView "一")
   , ("M-2", windows $ W.greedyView "二")
@@ -178,7 +179,13 @@ myConfig =
     `additionalKeysP` myKeys
 
 -- XMobar status bar configuration
-myStatusBar = statusBarProp "xmobar ~/.config/xmobar/xmobarrc" (pure myXmobarPP)
+
+myStatusBar =
+  mconcat
+    [ statusBarProp "/usr/bin/xmobar -x 0 ~/.config/xmobar/xmobarrc" (pure myXmobarPP)
+    , statusBarProp "/usr/bin/xmobar -x 1 ~/.config/xmobar/xmobarrc" (pure myXmobarPP)
+    ]
+
 
 main :: IO ()
 main = xmonad . ewmhFullscreen . ewmh . withEasySB myStatusBar defToggleStrutsKey $ myConfig

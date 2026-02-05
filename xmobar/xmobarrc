@@ -43,8 +43,8 @@ Config {
             ] 10
  
         , Run Com "sh"
-            [ "-c", "pamixer --get-volume-human" ]
-            "volume" 5
+            [ "-c", "pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\\d+%' | head -n1" ]
+            "volume" 1
 
         , Run Battery
             [ "-t", "<fc=#7aa2f7>󱐋</fc> <acstatus>"
