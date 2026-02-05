@@ -5,6 +5,11 @@
 set -e  # Exit on error
 
 echo "=========================================="
+echo "Welcome to my dotfiles installer!         "
+echo "=========================================="
+
+
+echo "=========================================="
 echo "Installing packages for your configuration"
 echo "=========================================="
 
@@ -174,7 +179,6 @@ echo "Configuration files copied successfully!"
 echo "=========================================="
 echo "Building xmonad..."
 echo "=========================================="
-
 
 echo "Copying wallpapers..."
 # Create wallpapers directory if it doesn't exist

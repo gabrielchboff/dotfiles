@@ -130,53 +130,7 @@ lazy.setup({
 		},
 	},
 
-	-- ===== FILE EXPLORER =====
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons",
-			"MunifTanjim/nui.nvim",
-		},
-		opts = {
-			close_if_last_window = false,
-			enable_git_status = true,
-			enable_diagnostics = true,
-			default_component_configs = {
-				modified = {
-					symbol = "[+]",
-					highlight = "NeoTreeModified",
-				},
-			},
-			window = {
-				position = "left",
-				width = 35,
-				mapping_options = {
-					noremap = true,
-					nowait = true,
-				},
-			},
-			filesystem = {
-				filtered_items = {
-					visible = false,
-					hide_dotfiles = false,
-					hide_gitignored = false,
-					hide_hidden = false,
-				},
-				follow_current_file = {
-					enabled = true,
-				},
-				group_empty_dirs = false,
-				hijack_netrw_behavior = "open_default",
-				use_libuv_file_watcher = false,
-			},
-		},
-		keys = {
-			{ "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Toggle file explorer" },
-			{ "<leader>E", "<cmd>Neotree focus<cr>", desc = "Focus file explorer" },
-		},
-	},
+	
 
 	-- ===== STATUSLINE & BUFFERLINE =====
 	{
@@ -186,55 +140,6 @@ lazy.setup({
 			options = {
 				theme = "tokyonight",
 				globalstatus = true,
-				disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
-				component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
-			},
-			sections = {
-				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = {
-					{
-						"filename",
-						file_status = true,
-						path = 1,
-					},
-				},
-				lualine_x = {
-					{
-						function()
-							local ok, noice = pcall(require, "noice")
-							if ok then
-								return noice.api.status.command.get()
-							end
-							return ""
-						end,
-						cond = function()
-							local ok, noice = pcall(require, "noice")
-							return ok and noice.api.status.command.has()
-						end,
-						color = { fg = "#ff9e64" },
-					},
-					{
-						function()
-							local ok, noice = pcall(require, "noice")
-							if ok then
-								return noice.api.status.mode.get()
-							end
-							return ""
-						end,
-						cond = function()
-							local ok, noice = pcall(require, "noice")
-							return ok and noice.api.status.mode.has()
-						end,
-						color = { fg = "#ff9e64" },
-					},
-					"encoding",
-					"fileformat",
-					"filetype",
-				},
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
 			},
 		},
 	},
@@ -245,7 +150,7 @@ lazy.setup({
 		opts = {
 			options = {
 				mode = "buffers",
-				separator_style = "slant",
+				separator_style = "thin",
 				show_buffer_close_icons = true,
 				show_close_icon = true,
 				color_icons = true,
@@ -256,7 +161,6 @@ lazy.setup({
 						filetype = "neo-tree",
 						text = "File Explorer",
 						highlight = "Directory",
-						separator = true,
 					},
 				},
 			},
@@ -275,68 +179,56 @@ lazy.setup({
 	},
 
 	-- ===== AI TOOLS =====
-	{
-		"Exafunction/codeium.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
-		},
-		config = function()
-			local codeium = safe_require("codeium")
-			if codeium then
-				codeium.setup({})
-			end
-		end,
-	},
+  
+  {
+    "Exafunction/codeium.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup({
+        enable_chat = false,
+      })
 
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			local copilot = safe_require("copilot")
-			if copilot then
-				copilot.setup({
-					suggestion = {
-						enabled = true,
-						auto_trigger = true,
-						debounce = 75,
-						keymap = {
-							accept = "<M-l>",
-							accept_word = false,
-							accept_line = false,
-							next = "<M-]>",
-							prev = "<M-[>",
-							dismiss = "<C-]>",
-						},
-					},
-					panel = { enabled = false },
-					filetypes = {
-						yaml = true,
-						markdown = true,
-						help = false,
-						gitcommit = false,
-						gitrebase = false,
-						hgcommit = false,
-						svn = false,
-						cvs = false,
-						["."] = false,
-					},
-				})
-			end
-		end,
-	},
+      local vt = require("codeium.virtual_text")
 
-	{
-		"zbirenbaum/copilot-cmp",
-		dependencies = { "zbirenbaum/copilot.lua" },
-		config = function()
-			local copilot_cmp = safe_require("copilot_cmp")
-			if copilot_cmp then
-				copilot_cmp.setup()
-			end
-		end,
-	},
+      -- Accept suggestion
+      vim.keymap.set("i", "<C-g>", function()
+        if vt.has_suggestion() then
+          vt.accept()
+        else
+          return "<C-g>"
+        end
+      end, { expr = true, silent = true })
+
+      -- Next suggestion
+      vim.keymap.set("i", "<C-n>", function()
+        if vt.has_suggestion() then
+          vt.next()
+        end
+      end, { silent = true })
+
+      -- Previous suggestion
+      vim.keymap.set("i", "<C-p>", function()
+        if vt.has_suggestion() then
+          vt.prev()
+        end
+      end, { silent = true })
+
+      -- Clear suggestion
+      vim.keymap.set("i", "<C-e>", function()
+        vt.clear()
+      end, { silent = true })
+
+      -- Manual trigger
+      vim.keymap.set("i", "<C-Space>", function()
+        vt.trigger()
+      end, { silent = true })
+    end,
+  },
+
+
 
 	-- ===== TREESITTER =====
 	{
@@ -522,7 +414,6 @@ lazy.setup({
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "copilot", group_index = 2 },
 					{ name = "codeium", group_index = 2 },
 					{ name = "nvim_lsp", group_index = 2 },
 					{ name = "luasnip", group_index = 2 },
@@ -532,7 +423,6 @@ lazy.setup({
 				formatting = {
 					format = function(entry, vim_item)
 						vim_item.menu = ({
-							copilot = "[Copilot]",
 							codeium = "[Codeium]",
 							nvim_lsp = "[LSP]",
 							luasnip = "[Snippet]",
@@ -946,14 +836,13 @@ lazy.setup({
 -- =====================================================================
 
 -- Set indentation options
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 -- Line numbers
 vim.opt.number = true
-vim.opt.relativenumber = true
 
 -- Search settings
 vim.opt.ignorecase = true
@@ -1000,12 +889,6 @@ vim.opt.foldenable = false
 
 local keymap = vim.keymap
 
--- Better up/down
-keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-keymap.set({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-
 -- Move to window using the <ctrl> hjkl keys
 keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
 keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
@@ -1019,12 +902,12 @@ keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease wi
 keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Move Lines
-keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { silent = true })
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { silent = true })
+
 
 -- Better indenting
 keymap.set("v", "<", "<gv")
