@@ -89,7 +89,17 @@ sudo pacman -S --needed --noconfirm \
     wiremix \
     network-manager-applet \
     bluez bluez-utils blueman-manager \
-
+    udisks2 \
+    gvfs \
+    gvfs-mtp \
+    gvfs-gphoto2 \
+    udiskie \
+    libva \
+    mesa \
+    libdrm lldb \
+    vulkan-intel \
+    vulkan-mesa-layers \
+    intel-media-driver \
 
 echo ""
 echo "Core packages installed successfully!"
@@ -119,7 +129,8 @@ paru -S --needed --noconfirm \
     brave-bin \
     discord \
     heroic-games-launcher-bin \
-    trayer nm-applet betterlockscreen\
+    wifitui nm-applet betterlockscreen\
+
 
 
 betterlockscreen -u ~/wallpapers --blur 0.8
